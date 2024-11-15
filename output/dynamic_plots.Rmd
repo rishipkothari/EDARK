@@ -1,0 +1,44 @@
+---
+title: "Dynamic Plots in R Markdown"
+output:
+  pdf_document: default
+  html_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(pacman)
+pacman::p_load(flextable, ggplot2, tidyverse, rmarkdown, knitr)
+```
+
+## Load Plots
+```{r}
+report_objects <- readRDS('report_objects.rds')
+```
+
+```{r include_flextable, results='asis'}
+summary(report_objects)
+var_objs <- report_objects[["variable_objects"]]
+for(variable_name in names(var_objs)){
+  this_var <- var_objs[[variable_name]]
+  variable_type <- this_var$variable_of_interest_type
+  correlation_var <- this_var$correlation_var
+  if(is.na(correlation_var)){
+    if(variable_type %in% c("numeric","integer")){
+      print(this_var$qq_plot)
+      print(this_var$histogram_plot)
+      cat(knit_print(this_var$stats_table))
+    }
+    else if(variable_type %in% c("factor","logical")){
+      print(this_var$bar_plot)
+      cat(knit_print(this_var$stats_table))
+    }
+  }
+  else if(!is.na(correlation_var)){
+    print(this_var$main_plot)
+    cat(knit_print(this_var$stats_table))
+  }
+}
+```
+

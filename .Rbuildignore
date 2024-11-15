@@ -1,2 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+todos.txt
+oldcode\*
+ignore\*

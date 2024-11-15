@@ -1,0 +1,51 @@
+# package update notes
+2024-11-13
+  - document() to generate NAMESPACE to import all relevant packages
+  - replaced reliance on preexisting dataset to default to iris
+  - broke out ui, server, and some server functions that were well designed to separate files
+  - created main function edark() to run shinyApp(ui, server)
+  - current issue is that variables defined in global.R arent available inside the server function inside the shiny app
+
+# To-do list
+
+# Level
+  # modify generate_report_rmarkdown to output each individual plot from the "plots" list, and the summary table, to all different slides
+  # create function generate_report_object_collection that calls generate_collection_single_variable to create all components for the report and store in object, including
+    # dataset_summary_table, missingness_plot/table, variable_output_objects, correlation_plot
+    # ideally, this should then be passed to any report generating function
+    # add missingness graph with naniar package
+    # will need to modify generate_report_powerpoint to output the odd things that arent plots, unless we just want to
+      # omit them, because of the slide limitations
+    # will also need to modify generate_report_rmarkdown to include the new things
+  # figure out precision for numbers when displaying labels
+  # convert histogram to "distribution" plot with these
+          # ggplot(iris, aes(Sepal.Length, stat(density))) +
+          #   geom_histogram(bins = 20, fill = "white", color = "black")  +
+          #   geom_density() +
+          #   geom_vline(aes(xintercept = mean(Sepal.Length)), linetype = 2)
+# Level 2
+  # complete download logic - hidden download button, use action button to simulate download button click
+    # https://community.rstudio.com/t/simulating-a-click-when-using-shinys-downloadhandler/15413/3
+  # integrate RMD script, add some page breaks, titles, formatting, etc; modify for the new report_data structure
+    # use this code to try and pass the rmd_content string as the input, and modify it to take a parameter, which will
+      # be the report_objects variable so that I don't have to write and read it in again in the RMD text
+          # rmarkdown::render(
+          #   "report.Rmd", output_file = file, params = params
+          # )
+        # for rendering to PDF without installing latex
+          # render_rmd_to_pdf <- function(input_file, output_file) {
+          #   pagedown::chrome_print(input_file, output_file)
+          # }
+# Level 3
+  # change the way the feature_filter object works; maybe it should contain one item for each variable so that I can
+    # more quickly and easily select, display current situation, and remove the "add" and "modify" levels of ux interaction
+# Level 5
+    # consider plotly output for HTML and in shiny app?
+  # different plot types https://www.datanovia.com/en/blog/ggplot-examples-best-reference/
+    #  factor-factor ggballoonplot(housetasks, fill = "value")
+  # when dynamically filtering, only offer factor "as is" if number of levels and factor only if < 10?
+    # can potentially use the dataset variable summary stats on this one!!!
+  # consider hrbrthemes for plots
+  # add "copy this plot as slide" button, or at the least,
+    # output it to a bmp or png or jpg using the output functions (e.g. png() and dev.off() and render it again)
+  # standardize table presentation on slides; fix scaling on the single variable summary

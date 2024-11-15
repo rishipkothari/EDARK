@@ -1,11 +1,40 @@
 Package: EDARK
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Exploratory Data Analysis Platform
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
+Author: RIshi Kothari
+Maintainer: Rishi Kothari <rishi.p.kothari@gmail.com>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
+Imports:
+  ggplot2,
+  dplyr,
+  magrittr,
+  data.table,
+  ggplot2,
+  scales,
+  grid,
+  gridExtra,
+  ggpubr,
+  corrplot,
+  hrbrthemes,
+  e1071,
+  gt,
+  gtsummary,
+  flextable,
+  shiny,
+  shinyjs,
+  shinyFiles,
+  htmltools,
+  shinyWidgets,
+  shinythemes,
+  shinyBS,
+  reactable,
+  DBI,
+  RPostgres,
+  officer,
+  rvg
+RoxygenNote: 7.3.2
