@@ -165,7 +165,7 @@ ui_edark <-
                                                                                                   fluidRow(
                                                                                                     column(h5("Report destination"), width = 4),
                                                                                                     column(selectInput(inputId="select_report_format", label=NULL,
-                                                                                                                       choices=c("Word document","PDF","Powerpoint", "HTML Web Page"), selected="HTML Web Page"), width=8)
+                                                                                                                       choices=c("Word document","PDF","Powerpoint", "HTML Web Page"), selected="Powerpoint"), width=8)
                                                                                                   ),
                                                                                                   width = 8
                                                                                                 ),

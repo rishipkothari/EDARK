@@ -15,10 +15,6 @@
 
 # exportPattern("^[[:alpha:]]+")
 
-hello <- function() {
-  print("Hello, World!")
-}
-
 edark <- function(dataset_to_use = iris){
 
   edark_dataset_input <<- dataset_to_use
