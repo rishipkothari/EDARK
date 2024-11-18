@@ -16,7 +16,7 @@ server_edark <- function(input, output, session){
 
   # cohort filtering parameters
   feature_filter <- vector(mode="list", length=0)
-  feature_filter_modified <- reactiveVal(F)
+  feature_filter_modified_flag <- reactiveVal(F)
 
   # from server
   #TOAD db connection
@@ -514,15 +514,15 @@ server_edark <- function(input, output, session){
     input$radio_feature_filter_factor_type
     input$text_feature_filter_factor_cut_points
     input$select_feature_filter_factor_levels}, ignoreInit = TRUE, {
-      feature_filter_modified(T)
+      feature_filter_modified_flag(T)
     })
 
   # if dataset has been modified, filter dataset again, which also updates UI and variable selectInputs
   observeEvent(input$tabsetpanel_data_explorer_sidebar, {
 
-    if(feature_filter_modified() == T && input$tabsetpanel_data_explorer_sidebar == "Explore data"){
+    if(feature_filter_modified_flag() == T && input$tabsetpanel_data_explorer_sidebar == "Explore data"){
       filter_dataset()
-      feature_filter_modified(F)
+      feature_filter_modified_flag(F)
     } else if (input$tabsetpanel_data_explorer_sidebar == "Cohort selection"){
       updateTabsetPanel(session, inputId="tabsetpanel_data_explorer_mainpanel", selected="Dataset")
 
@@ -530,10 +530,10 @@ server_edark <- function(input, output, session){
   })
 
   observeEvent(input$button_update_dataset, {
-    if(feature_filter_modified() == T){
+    if(feature_filter_modified_flag() == T){
       filter_dataset()
       update_dataset_descriptive_tables()
-      feature_filter_modified(F)
+      feature_filter_modified_flag(F)
     }
   })
 
@@ -850,7 +850,8 @@ server_edark <- function(input, output, session){
                                    legend_flag = legend_flag,
                                    legend_position = legend_position,
                                    destination = "screen",
-                                   palette = input$select_fill_palette)
+                                   palette = input$select_fill_palette,
+                                   trend_resolution = trend_resolution)
 
       data_explorer_plot(return_plot)
     }, error = function(e) {

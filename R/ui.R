@@ -184,9 +184,11 @@ ui_edark <-
                                                                                                               c("Blues","Reds","Oranges","Purples","Set1","Set2","Set3","Pastel1","Pastel2"), selected="Set1"),
                                                                                                 checkboxInput(inputId="checkbox_show_labels", label="Show labels?", value=FALSE),
                                                                                                 fluidRow(
-                                                                                                  column(checkboxInput(inputId="checkbox_show_legend", label="Legend position", value=FALSE), width=4),
+                                                                                                  column(checkboxInput(inputId="checkbox_show_legend", label="Show legend?", value=FALSE), width=4)),
+                                                                                                fluidRow(
+                                                                                                  column(h5("Legend position"), width = 4),
                                                                                                   column(selectInput(inputId="select_legend_position", label=NULL,
-                                                                                                                     choices=c("top","right","bottom"), selected="right"), width=9)
+                                                                                                                     choices=c("top","right","bottom"), selected="right"), width=8)
                                                                                                 ),
                                                                                                 sliderInput(inputId="slider_xlim_scale", label="X axis scale (%ile)", min=0, max=200, value=100),
                                                                                                 sliderInput(inputId="slider_ylim_scale", label="Y axis scale (%ile)", min=0, max=200, value=100),

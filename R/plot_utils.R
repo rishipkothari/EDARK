@@ -361,7 +361,7 @@ style_plot <- function(plot,
     x_axis_title_func <- indep_var_title_func
     y_axis_title_func <- dep_var_title_func
     legend_title_func <- stratify_var_title_func
-    plot_title_func <- paste0("Trend of ", dep_var_title_func)
+    plot_title_func <- indep_var # paste0("Trend of ", dep_var_title_func)
     if(stratify_flag == T) plot_title_func <- paste0(plot_title_func," stratified by ",stratify_var_title_func)
     plot_title_func <- str_to_title(plot_title_func)
 
