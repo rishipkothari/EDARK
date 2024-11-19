@@ -1,4 +1,7 @@
 # package update notes
+2024-11-18
+  - split out a lot of code into modules
+  - cleared those split out functions for dependencies, which involved adding some parameters like trend_resolution, palette to plotting and style_plot functions
 2024-11-13
   - document() to generate NAMESPACE to import all relevant packages
   - replaced reliance on preexisting dataset to default to iris
@@ -8,7 +11,11 @@
 
 # To-do list
 
-# Level
+# Level 0
+  # transition feature_filter and associated dataset column name storage variables to reactiveVals
+    # consider, for simplicity, anywhere feature_filter is modified, loading a temp local copy, modifying it using existing code, then loading back into reactive_val
+    # this would be helpful to simply include feature_filter <- feature_filter() and then feature_filter(feature_filter) at the beginning and end of every function that uses it
+# Level 1
   # modify generate_report_rmarkdown to output each individual plot from the "plots" list, and the summary table, to all different slides
   # create function generate_report_object_collection that calls generate_collection_single_variable to create all components for the report and store in object, including
     # dataset_summary_table, missingness_plot/table, variable_output_objects, correlation_plot
@@ -21,7 +28,7 @@
   # convert histogram to "distribution" plot with these
           # ggplot(iris, aes(Sepal.Length, stat(density))) +
           #   geom_histogram(bins = 20, fill = "white", color = "black")  +
-          #   geom_density() +
+          #   geom_density()
           #   geom_vline(aes(xintercept = mean(Sepal.Length)), linetype = 2)
 # Level 2
   # complete download logic - hidden download button, use action button to simulate download button click
