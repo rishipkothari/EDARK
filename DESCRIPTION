@@ -1,12 +1,15 @@
-Package: EDARK
+Package: edark
 Type: Package
-Title: Exploratory Data Analysis Platform
+Title: Exploratory Data Analysis GUI by RK
 Version: 0.1.0
 Author: RIshi Kothari
 Maintainer: Rishi Kothari <rishi.p.kothari@gmail.com>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Description: Provides a GUI to perform exploratory data analysis on simple dataframes
+    Includes ability to export reports to PPT, HTML, Microsoft Word, and PDF format for ease of sharing
+    Modes of investigation include variable summaries, and exploring variable relationships with a single variable identified
+    as an exposure or as an outcome
+    Includes ability to modify dataset on the fly, filtering for outliers, conversion of numerics to factors, and more.
+License: None
 Encoding: UTF-8
 LazyData: true
 Imports:
@@ -25,6 +28,7 @@ Imports:
   gt,
   gtsummary,
   flextable,
+  lubridate,
   shiny,
   shinyjs,
   shinyFiles,
@@ -33,8 +37,6 @@ Imports:
   shinythemes,
   shinyBS,
   reactable,
-  DBI,
-  RPostgres,
   officer,
   rvg
 RoxygenNote: 7.3.2
