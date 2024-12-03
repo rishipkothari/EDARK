@@ -15,7 +15,7 @@ server_edark <- function(input, output, session){
   summary_table_all_variables <- reactiveVal(NA)
 
   # cohort filtering parameters
-  feature_filter <- vector(mode="list", length=0)
+  feature_filter <- reactiveVal(vector(mode="list", length=0))
   feature_filter_modified_flag <- reactiveVal(F)
 
   # from server
@@ -68,7 +68,7 @@ server_edark <- function(input, output, session){
     print("data loaded into dataset_loaded")
 
     # clear current dynamic feature filtering/modification data structure
-    feature_filter <- vector(mode="list", length=0)
+    feature_filter(vector(mode="list", length=0))
 
     # update cohort selection tab with new data features
     updateSelectInput(session,inputId="select_feature_filter_modify", choices=NULL)
